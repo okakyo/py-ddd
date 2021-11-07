@@ -1,0 +1,18 @@
+version: "3"
+services:
+  web:
+    restart: always
+    container_name: "ddd-fastapi"
+    build:
+      context: "./py-server"
+      target: "dev"
+    tty: true
+    ports:
+      - 5555:5555
+    volumes:
+      - ./py-server/src/py_server:/work/src/py_server
+      - ./py-server/tests:/work/src/tests
+    command:
+      ["uvicorn", "py_server.main:app", "--reload", "--host", "0.0.0.0", "--port", "5555"]
+
+
