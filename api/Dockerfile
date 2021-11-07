@@ -1,4 +1,4 @@
-FROM python:3.10 as builder
+FROM python:3.10-slim as builder
 
 WORKDIR /work/src
 RUN pip install --upgrade pip && pip install poetry
@@ -8,7 +8,7 @@ RUN poetry export --without-hashes -f requirements.txt > requirements.txt &&\
 		pip install -r requirements.txt
 
 ### for dev.
-FROM python:3.10 as dev
+FROM python:3.10-slim as dev
 ENV PYTHONUNBUFFERED=1
 WORKDIR /work/src
 COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
