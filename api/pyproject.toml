@@ -8,6 +8,7 @@ authors = ["okakyo <oka@logly.co.jp>"]
 python = "^3.10"
 fastapi = "^0.70.0"
 SQLAlchemy = "^1.4.26"
+uvicorn = "^0.15.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
