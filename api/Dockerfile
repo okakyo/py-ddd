@@ -14,7 +14,7 @@ WORKDIR /work/src
 COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
 # need to copy if python package is installed in /usr/local/bin
 COPY --from=builder /usr/local/bin /usr/local/bin
-COPY ./src ./
+COPY ./api ./
 COPY ./tests ./tests
 # for dev packages
 COPY --from=builder /work/src/requirements-dev.txt requirements-dev.txt

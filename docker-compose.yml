@@ -1,17 +1,31 @@
-version: "3"
+version: "3.8"
 services:
   web:
     restart: always
     container_name: "ddd-fastapi"
     build:
-      context: "./py-server"
+      context: "./api"
       target: "dev"
     tty: true
+    depends_on:
+      - db
     ports:
       - 5555:5555
     volumes:
-      - ./py-server/src/py_server:/work/src/py_server
-      - ./py-server/tests:/work/src/tests
+      - ./api/api:/work/src/api
+      - ./api/tests:/work/src/tests
     command:
-      ["uvicorn", "py_server.main:app", "--reload", "--host", "0.0.0.0", "--port", "5555"]
-
+      ["uvicorn", "api.main:app", "--reload", "--host", "0.0.0.0", "--port", "5555"]
+  db:
+    image: postgres:14-alpine
+    restart: always
+    container_name: "ddd-posgresql"
+    environment:
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "password"
+      TZ: "Asia/Tokyo"
+    ports:
+      - '35432:5432'
+    volumes:
+      - ./docker/postgresql/data:/var/lib/postgresql/data
+      - ./docker/postgresql/initdb:/docker-entrypoint-initdb.d
