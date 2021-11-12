@@ -14,6 +14,9 @@ services:
     volumes:
       - ./api/api:/work/src/api
       - ./api/tests:/work/src/tests
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     command:
       ["uvicorn", "api.main:app", "--reload", "--host", "0.0.0.0", "--port", "5555"]
   db:
@@ -21,8 +24,8 @@ services:
     restart: always
     container_name: "ddd-posgresql"
     environment:
-      POSTGRES_USER: "user"
-      POSTGRES_PASSWORD: "password"
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       TZ: "Asia/Tokyo"
     ports:
       - '35432:5432'
