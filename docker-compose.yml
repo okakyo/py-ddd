@@ -2,7 +2,23 @@ version: "3.8"
 services:
   web:
     restart: always
-    container_name: "ddd-fastapi"
+    container_name: "ddd-front"
+    build:
+      context: "./front"
+      target: "dev"
+    tty: true
+    depends_on:
+      - db
+      - api
+    ports:
+      - 13000:3000
+    volumes:
+      - ./front:/work/app
+    command:
+      ["yarn","dev"]
+  api:
+    restart: always
+    container_name: "ddd-api"
     build:
       context: "./api"
       target: "dev"
@@ -17,15 +33,18 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: dev
     command:
       ["uvicorn", "api.main:app", "--reload", "--host", "0.0.0.0", "--port", "5555"]
+
   db:
-    image: postgres:14-alpine
+    image: postgres:14
     restart: always
-    container_name: "ddd-posgresql"
+    container_name: "ddd-sql"
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: dev
       TZ: "Asia/Tokyo"
     ports:
       - '35432:5432'
