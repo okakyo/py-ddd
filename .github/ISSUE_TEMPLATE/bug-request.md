@@ -3,8 +3,7 @@ name: "❌ [Bug]：Bug request"
 about: 発生したバグについてのテンプレート
 title: "❌ [Bug]：バグ報告のテンプレート"
 labels: bug
-assignees: okakyo
-
+assignees: ''
 ---
 
 ## バグについての説明
