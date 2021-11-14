@@ -1,5 +1,5 @@
 ---
-name: \U0001F331 [Feature]：Feature request
+name: 🌱 [Feature]：Feature request
 about: 追加したい機能についての提案
 title: "\U0001F331 [Feature]：フューチャーリクエストのテンプレート"
 labels: features
