@@ -15,7 +15,7 @@ module.exports = {
 
 		/* Handle image imports
     https://jestjs.io/docs/webpack#handling-static-assets */
-		"^@/components/(.*)$": "<rootDir>/src/components/$1"
+    "^@/(.*)$": "<rootDir>/$1"
 	},
 	testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/"],
 	testEnvironment: "jsdom",
