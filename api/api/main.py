@@ -1,4 +1,6 @@
-from fastapi import FastAPI, params
+from fastapi import FastAPI
+from sqlalchemy.orm.session import Session
+
 
 app = FastAPI()
 

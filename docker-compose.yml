@@ -10,6 +10,8 @@ services:
     depends_on:
       - db
       - api
+    environment:
+      DB_URL: postgressql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/dev
     ports:
       - 13000:3000
     volumes:
