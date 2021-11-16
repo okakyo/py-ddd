@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-class TodoModel(BaseModel):
+class RoomModel(BaseModel):
   title: str
   description: str
   created_at: int
