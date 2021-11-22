@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional
 
-class TodoRepository(ABC):
+class RoomRepository(ABC):
 
     @abstractmethod
     def create():

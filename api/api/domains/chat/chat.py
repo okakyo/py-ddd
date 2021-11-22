@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-class RoomModel(BaseModel):
+class ChatModel(BaseModel):
   title: str
   description: str
   created_at: int

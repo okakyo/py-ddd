@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter,WebSocket
 
 router = APIRouter(
   prefix="/room",
@@ -6,19 +6,9 @@ router = APIRouter(
 )
 
 
-@router.get('/{roomId}')
-async def getChatRoomByRoomId(roomId: str):
-    return "Done"
-
-@router.post('/')
-async def createChatRoom():
-  return "Created"
-
-@router.put("/{roomId}")
-async def updateChatRoomById(roomId:str):
-    return "Updated"
-
-@router.delete("/{roomId}")
-async def deleteChatRoom(roomId:str):
-  return "Deleted"
-
+@router.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+  await websocket.accept()
+  while True:
+    data = await websocket.receive_text()
+    await websocket.send_text(f"Message Text was: {data}")
